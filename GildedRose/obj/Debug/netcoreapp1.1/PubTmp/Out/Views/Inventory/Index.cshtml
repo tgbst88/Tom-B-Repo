@@ -1,0 +1,75 @@
+@model IEnumerable<GildedRose.Inventory.Product>
+
+    @{
+    ViewData["Title"] = "Index";
+    }
+
+    <h2>Gilded Rose Inventory</h2>
+
+    <p>
+        <a asp-action="AddItem">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.category)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.sellin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.quality)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+                <tr>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.category)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.sellin)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.quality)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", "Inventory", new {id = item.Id}, null) |
+                        @Html.ActionLink("Delete", "Delete",  "Inventory", new {id = item.Id}, null)
+                    </td>
+                </tr>
+}
+        </tbody>
+    </table>
+
+    <div>
+        @using (Html.BeginForm("CloseDay","Inventory",FormMethod.Post))
+    {
+            <input type="submit" name="CloseDay" value="End Day">
+    }
+    </div>
+
+    <div>
+        @using (Html.BeginForm())
+    {
+            <input type="submit" name="showTrash" value="Show Trash">
+    }
+    </div>
+
+
